@@ -1,8 +1,8 @@
 # CS5588-Capstone-Project
 
 # Authors
-Michael Nweke
-Ally Ryan 
+1. Michael Nweke https://github.com/m-nweke
+2. Ally Ryan 
 
 # Project Ideas
 ### 1. Password Strength Classifier
