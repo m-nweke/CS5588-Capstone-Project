@@ -1,10 +1,10 @@
 # CS5588-Capstone-Project
 
-# Authors
+## Authors
 1. Michael Nweke https://github.com/m-nweke
-2. Ally Ryan 
+2. Ally Ryan https://github.com/aerc4d
 
-# Project Ideas
+## Project Ideas
 ### 1. Password Strength Classifier
 Create a Password Strength Classifier that delivers users a precise evaluation of their password strength. Ensure the classifier functions seamlessly across widely spoken languages worldwide. Additionally, incorporate features that offer users suggestions on enhancing their password according to industry standards, and make them aware of the specific risks linked to their current password.
 
