@@ -1,12 +1,43 @@
-# CS5588-Capstone-Project
+# Sitting Posture Recognition
 
-## Authors
+### Slide deck: 
+### Statement of Work: 
+
+## Overview
+This MIT-licensed software, hosted on GitHub, is a posture assessment tool that determines the sitting position of a person when given a lateral view as input. The output includes details such as the position of the back (straight, hunchback, reclined), position of the hands (folded vs not folded), and kneeling (i.e., feet curled behind the knees). The project employs a trained Keras model based on OpenPose to detect keypoints on the human body, providing valuable insights into sitting posture.
+
+## Importance
+Poor sitting posture can lead to lower back and neck pain, as well as various adverse health effects, including musculoskeletal imbalances, balance issues, impaired digestion, and reduced flexibility. Good posture, such as keeping feet flat on the floor, avoiding crossing knees or ankles, and sitting up straight, is crucial for overall well-being.
+
+## Project Goals
+### New Features:
+Determine the position of the neck.
+Identify if feet are on the ground or dangling.
+Detect if legs are crossed.
+Provide recommendations for posture improvement to reduce the risk of back and neck pain.
+### User Interface:
+Develop an easy-to-use UI for users to view their posture status and receive corresponding recommendations.
+
+## Expected Outcomes
+Design a seated posture assessment interface that evaluates the alignment of the back, feet, knees, and neck. Provide personalized recommendations to minimize the risk of neck and back discomfort.
+
+## Model Architecture
+The project uses a VGG-like architecture with a multi-stage approach (stages 1 to 6) to progressively refine predictions. The model focuses on detecting keypoints on the human body, including joints like the head, shoulders, elbows, wrists, hips, knees, and ankles. It incorporates branches for both Part Affinity Fields (PAF) and confidence maps. Predictions from prior stages are concatenated with the input for iterative refinement. The model is designed for training with additional inputs such as vector weights and heat weights, utilizing ReLU activation, concatenation, and multiplication operations.
+
+## Model Architecture
+The project uses a VGG-like architecture with a multi-stage approach (stages 1 to 6) to progressively refine predictions. The model focuses on detecting keypoints on the human body, including joints like the head, shoulders, elbows, wrists, hips, knees, and ankles. It incorporates branches for both Part Affinity Fields (PAF) and confidence maps. Predictions from prior stages are concatenated with the input for iterative refinement. The model is designed for training with additional inputs such as vector weights and heat weights, utilizing ReLU activation, concatenation, and multiplication operations.
+
+## OpenCV Implementaion (Stretch Goal)
+Enhancing the project's capabilities, an OpenCV implementation is integrated to identify useful objects and apply domain knowledge for specific use cases. This stretch goal enables the model to not only identify objects but also discern between dog breeds, recognize different action poses, and distinguish between various sports activities. This expansion broadens the project's applicability and underscores its potential for diverse and specialized scenarios.
+
+## Technologies Used
+Frontend: Vue.js
+Database: Firebase
+Backend: Python API via OpenPose
+Model: Keras/TensorFlow
+Computer Vision: OpenCV
+Development Environment: Jupyter Notebook
+
+## Contributors
 1. Michael Nweke https://github.com/m-nweke
 2. Ally Ryan https://github.com/aerc4d
-
-## Project Ideas
-### 1. Password Strength Classifier
-Create a Password Strength Classifier that delivers users a precise evaluation of their password strength. Ensure the classifier functions seamlessly across widely spoken languages worldwide. Additionally, incorporate features that offer users suggestions on enhancing their password according to industry standards, and make them aware of the specific risks linked to their current password.
-
-### 2. Malicious URL Detection System
-Create a platform employing deep learning, feature extraction, and classification methods to analyze the content of a given URL for any anomalies or malicious elements. Guarantee that the platform assesses the risk associated with users accessing the website and offers clear reasons behind the identified risk.
