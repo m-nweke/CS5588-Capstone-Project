@@ -32,10 +32,15 @@ Enhancing the project's capabilities, an OpenCV implementation is integrated to 
 
 ## Technologies Used
 Frontend: Vue.js
+
 Database: Firebase
+
 Backend: Python API via OpenPose
+
 Model: Keras/TensorFlow
+
 Computer Vision: OpenCV
+
 Development Environment: Jupyter Notebook
 
 ## Contributors
