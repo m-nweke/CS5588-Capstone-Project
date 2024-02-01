@@ -46,3 +46,4 @@ Development Environment: Jupyter Notebook
 ## Contributors
 1. [Michael Nweke](https://github.com/m-nweke)
 2. [Ally Ryan](https://github.com/aerc4d)
+3. [Parisha Rathod](https://github.com/parisha8994)
