@@ -1,9 +1,3 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
-
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
@@ -12,6 +6,7 @@ defineProps<{
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
+    <p>{{ testData }}</p>
   </div>
 </template>
 
@@ -38,3 +33,31 @@ h3 {
   }
 }
 </style>
+
+<script setup lang="ts">
+/* eslint-disable */
+defineProps<{
+  msg: string
+}>()
+
+import axios from 'axios';
+import { ref, onBeforeMount } from 'vue';
+
+const testData = ref('');
+
+const getData = () => {
+  return axios.get('http://127.0.0.1:5000/'); // Return the axios promise
+};
+
+onBeforeMount(async() => {
+  try {
+    const response = await getData();
+    console.log(response.data);
+    testData.value = response.data; // Return the data
+  } catch (error) {
+    console.error('Error getting data: ', error);
+    return null; // Return null in case of error
+  }
+})
+
+</script>
