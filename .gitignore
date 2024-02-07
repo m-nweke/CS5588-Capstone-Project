@@ -6,6 +6,10 @@ __pycache__/
 instance/
 .env
 
+# Dependency directories
+env/
+venv/
+
 # Logs
 logs
 *.log
