@@ -1,10 +1,6 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-from db.firebase import initialize_firebase
 from firebase_admin import storage
-
-# Import Firebase initialization
-initialize_firebase()
 
 #Initialize storage buck for firebase
 bucket = storage.bucket()
