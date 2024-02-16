@@ -1,7 +1,8 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_file
 from flask_cors import CORS
 from db.firebase import initialize_firebase
 from firebase_admin import storage
+import io
 
 # Import Firebase initialization
 initialize_firebase()
@@ -43,16 +44,17 @@ def upload_file():
     return 'File uploaded successfully'
 
 
-@app.route('/media/<filename>', methods=['GET'])
-def get_file(filename):
-    # Retrieve file path from Firebase Storage or any other storage system
-    # Here, 'get_file_url' is a function that retrieves the URL based on the filename
-    file_url = get_file_url(filename)
-    if file_url:
-        # Redirect to the Firebase Storage URL
-        return redirect(file_url)
-    else:
-        return 'File not found'
+# Endpoint to serve JPEG image files
+@app.route('/images/<filename>')
+def serve_jpeg_image(image_path):
+    blob = bucket.blob(image_path)
+    file_data = blob.download_as_string()
+
+    return send_file(
+        io.BytesIO(file_data),
+        mimetype='image/jpeg',
+        as_attachment=True
+    )
 
 if __name__ == '__main__':
     app.run(app='app', debug=True, port=5000)
