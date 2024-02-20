@@ -24,9 +24,6 @@ Design a seated posture assessment interface that evaluates the alignment of the
 ## Model Architecture
 The project uses a VGG-like architecture with a multi-stage approach (stages 1 to 6) to progressively refine predictions. The model focuses on detecting keypoints on the human body, including joints like the head, shoulders, elbows, wrists, hips, knees, and ankles. It incorporates branches for both Part Affinity Fields (PAF) and confidence maps. Predictions from prior stages are concatenated with the input for iterative refinement. The model is designed for training with additional inputs such as vector weights and heat weights, utilizing ReLU activation, concatenation, and multiplication operations.
 
-## Model Architecture
-The project uses a VGG-like architecture with a multi-stage approach (stages 1 to 6) to progressively refine predictions. The model focuses on detecting keypoints on the human body, including joints like the head, shoulders, elbows, wrists, hips, knees, and ankles. It incorporates branches for both Part Affinity Fields (PAF) and confidence maps. Predictions from prior stages are concatenated with the input for iterative refinement. The model is designed for training with additional inputs such as vector weights and heat weights, utilizing ReLU activation, concatenation, and multiplication operations.
-
 ## OpenCV Implementaion (Stretch Goal)
 Enhancing the project's capabilities, an OpenCV implementation is integrated to identify useful objects and apply domain knowledge for specific use cases. This stretch goal enables the model to not only identify objects but also discern between dog breeds, recognize different action poses, and distinguish between various sports activities. This expansion broadens the project's applicability and underscores its potential for diverse and specialized scenarios.
 
