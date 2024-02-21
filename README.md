@@ -1,4 +1,4 @@
-# Sitting Posture Recognition
+# OpenPosture - Sitting Posture Feedback System
 
 ### [Project Proposal Slide deck](PostureCapstone.pptx)
 ### [Statement of Work](SoW_Posture.docx)
