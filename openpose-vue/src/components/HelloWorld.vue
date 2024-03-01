@@ -44,6 +44,8 @@ import axios from 'axios';
 import { ref, onBeforeMount } from 'vue';
 
 const testData = ref('');
+const photoUrl = ref('');
+const photoFilename = 'photo1.jpg'; // Change this to the dynamic filename
 
 const getData = () => {
   return axios.get('http://127.0.0.1:5000/'); // Return the axios promise
