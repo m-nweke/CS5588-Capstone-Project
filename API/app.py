@@ -1,14 +1,7 @@
 from flask import Flask, jsonify, send_file
 from flask_cors import CORS
-from db.firebase import initialize_firebase
-from firebase_admin import storage
+from db.firebase import initialize_app, bucket
 import io
-
-# Import Firebase initialization
-initialize_firebase()
-
-#Initialize storage buck for firebase
-bucket = storage.bucket()
 
 # instantiate the app
 app = Flask(__name__)
@@ -45,16 +38,13 @@ def upload_file():
 
 
 # Endpoint to serve JPEG image files
-@app.route('/images/<filename>')
-def serve_jpeg_image(image_path):
-    blob = bucket.blob(image_path)
-    file_data = blob.download_as_string()
+@app.route('/images')
+def serve_jpeg_image():
+    blob = bucket.blob('image1.jpg')
+    blob.download_to_filename('/Users/michaelnweke/PhpstormProjects/CS5588-Capstone-Project/API/db/image1.jpg')
 
-    return send_file(
-        io.BytesIO(file_data),
-        mimetype='image/jpeg',
-        as_attachment=True
-    )
+
+    return "file downloaded?"
 
 if __name__ == '__main__':
-    app.run(app='app', debug=True, port=5000)
+    app.run(debug=True, port=5000)
