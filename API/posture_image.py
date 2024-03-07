@@ -229,12 +229,12 @@ def showimage(
 
 def prinfTick(i):  # Time calculation to keep a trackm of progress
     toc = time.time()
-    print('processing time%d is %.5f' % (i, toc - tic))
+    print('Processed Position %d in %.5f' % (i, toc - tic))
 
 
 if __name__ == '__main__':  # main function of the program
     tic = time.time()
-    print('start processing...')
+    print('Starting posture assessment...')
 
     model = get_testing_model()
     model.load_weights('./model/keras/model.h5')
@@ -243,11 +243,13 @@ if __name__ == '__main__':  # main function of the program
     if (vi == False):
         time.sleep(2)
         params, model_params = config_reader()
-        canvas, position = process('./sample_images/straight_flip.jpg', params, model_params)
-        showimage(canvas)
-        if (position == 1):
+        canvas, position = process('./sample_images/OP73.jpeg', params, model_params)
+        if position == 1:
             print("Hunchback")
-        elif (position == -1):
+        elif position == -1:
             print("Reclined")
         else:
             print("Straight")
+
+        showimage(canvas)
+
