@@ -6,6 +6,9 @@ __pycache__/
 instance/
 .env
 
+# Keras
+*.h5
+
 # Dependency directories
 env/
 venv/
