@@ -7,7 +7,7 @@ instance/
 .env
 
 # Keras
-*.h5
+.h5
 
 # Dependency directories
 env/
