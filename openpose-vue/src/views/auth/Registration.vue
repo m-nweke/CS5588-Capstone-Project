@@ -3,6 +3,10 @@
     <h1>Create a Posture Profile</h1>
     <div class="form">
       <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" v-model="name" />
+      </div>
+      <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" placeholder="Enter your email" v-model="email" />
       </div>
@@ -70,10 +74,11 @@ button {
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useRouter } from 'vue-router';
 import { auth } from '@/main';
 
+const name = ref('');
 const email = ref('');
 const password = ref('');
 const router = useRouter();
@@ -81,7 +86,18 @@ const router = useRouter();
 const register = () => {
   createUserWithEmailAndPassword(auth, email.value, password.value)
       .then(() => {
-        console.log("Successfully Registered!");
+        const user = auth.currentUser;
+        if (user) {
+          updateProfile(user, {displayName: name.value})
+            .then(() => {
+              console.log("Successfully Registered!");
+              router.push('/dashboard');
+          })
+            .catch((error) => {
+              console.error(error);
+              alert(error.message);
+          })
+        }
         router.push('/dashboard');
       })
       .catch(error => {
