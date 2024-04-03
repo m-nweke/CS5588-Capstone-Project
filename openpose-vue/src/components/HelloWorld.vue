@@ -1,10 +1,8 @@
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="orange">{{ msg }}</h1>
     <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
+      A virtual posture assessment tool created by graduate student developers from the University of Missouri-Kansas City
     </h3>
     <p>{{ testData }}</p>
   </div>
@@ -31,6 +29,10 @@ h3 {
   .greetings h3 {
     text-align: left;
   }
+}
+
+.orange {
+  color: orange; /* Set text color to orange */
 }
 </style>
 
