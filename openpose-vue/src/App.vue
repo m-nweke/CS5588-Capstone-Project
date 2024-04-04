@@ -22,7 +22,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import { onMounted, ref } from 'vue';
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useRouter } from "vue-router";
 import { auth } from '@/main';
 
@@ -82,14 +82,6 @@ nav {
 
 .btn-signout:hover {
   background-color: #c4322e; /* Darken button color on hover */
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
 }
 
 nav a {

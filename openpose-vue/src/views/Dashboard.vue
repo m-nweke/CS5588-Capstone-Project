@@ -24,8 +24,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { auth, db } from '@/main';
-import { collection, addDoc } from 'firebase/firestore';
+import { auth } from '@/main';
 
 const name = ref(auth.currentUser?.displayName);
 const imageFile = ref<File | null>(null);
