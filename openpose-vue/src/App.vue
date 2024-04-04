@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img alt="OpenPose logo" class="logo" src="@/assets/openPose.png" width="175" height="175" />
+    <img alt="OpenPose logo" class="logo" src="@/assets/openPose.png" width="200" height="200" />
 
     <div class="wrapper">
       <HelloWorld class="title" msg="OpenPosture" />
