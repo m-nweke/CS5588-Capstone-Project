@@ -18,6 +18,7 @@
     </div>
     <p class="separator">or</p>
     <button class="btn-google" @click="signInWithGoogle">Sign in with Google</button>
+    <p class="sign-in-here">Already have an account? <router-link to="/login">Sign in here</router-link>.</p>
   </div>
 </template>
 
@@ -70,6 +71,17 @@ button {
   text-align: center;
   margin: 20px 0;
 }
+
+.sign-in-here {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.sign-in-here a {
+  color: orange; /* Set the color of the text within the router-link to orange */
+  text-decoration: underline; /* Add underline to the text within the router-link */
+}
+
 </style>
 
 <script setup lang="ts">
@@ -89,14 +101,14 @@ const register = () => {
         const user = auth.currentUser;
         if (user) {
           updateProfile(user, {displayName: name.value})
-            .then(() => {
-              console.log("Successfully Registered!");
-              router.push('/dashboard');
-          })
-            .catch((error) => {
-              console.error(error);
-              alert(error.message);
-          })
+              .then(() => {
+                console.log("Successfully Registered!");
+                router.push('/dashboard');
+              })
+              .catch((error) => {
+                console.error(error);
+                alert(error.message);
+              })
         }
         router.push('/dashboard');
       })
