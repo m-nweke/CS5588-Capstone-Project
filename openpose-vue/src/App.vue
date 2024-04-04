@@ -10,7 +10,7 @@
         <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
         <router-link class="nav-link" to="/register">Register</router-link>
         <router-link class="nav-link" to="/login">Login</router-link>
-<!--        <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>-->
+        <button class="btn-signout" @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
       </nav>
     </div>
   </header>
@@ -24,26 +24,20 @@ import HelloWorld from './components/HelloWorld.vue'
 import { onMounted, ref } from 'vue';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useRouter } from "vue-router";
+import { auth } from '@/main';
 
 const router = useRouter();
 const isLoggedIn = ref(false);
-// let auth;
-// onMounted(() => {
-//   auth = getAuth();
-//   onAuthStateChanged(auth, (user) => {
-//     if (user) {
-//       isLoggedIn.value = true;
-//     } else {
-//       isLoggedIn.value = false;
-//     }
-//   })
-// })
-// const handleSignOut = () => {
-//   auth = getAuth()
-//   signOut(auth).then(() => {
-//     router.push('/')
-//   })
-// };
+onMounted(() => {
+  onAuthStateChanged(auth, (user) => {
+    isLoggedIn.value = !!user;
+  })
+})
+const handleSignOut = () => {
+  signOut(auth).then(() => {
+    router.push('/')
+  })
+};
 </script>
 
 <style scoped>
@@ -74,6 +68,20 @@ nav {
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
+}
+
+.btn-signout {
+  background-color: #db4437; /* Set button background color */
+  color: #fff; /* Set button text color */
+  padding: 8px 12px; /* Adjust padding */
+  font-size: 14px; /* Adjust font size */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-signout:hover {
+  background-color: #c4322e; /* Darken button color on hover */
 }
 
 nav a.router-link-exact-active {
