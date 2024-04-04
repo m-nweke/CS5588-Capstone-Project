@@ -11,10 +11,16 @@
       <h2>Here are your results:</h2>
       <img :src="imageUrl" v-if="imageUrl && showResults" alt="Uploaded Image" class="uploaded-image">
       <p>{{ postureDetectionResult }}</p>
+      <div v-if="workoutResult.length > 0">
+        <h3>Posture Improvement Recommendations:</h3>
+        <ul>
+          <li v-for="recommendation in workoutResult" :key="recommendation">{{ recommendation }}</li>
+        </ul>
+      </div>
     </div>
+    <div v-if="showLoading" class="loading-spinner"></div>
   </div>
 </template>
-
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
@@ -25,10 +31,18 @@ const name = ref(auth.currentUser?.displayName);
 const imageFile = ref<File | null>(null);
 const imageUrl = ref<string | null>(null);
 const showResults = ref(false); // This will be set to true when results are available
+const showLoading = ref(false); // This will be set to true when loading
 const postureDetectionResult = computed(() => {
   // This would be fetched from the backend after submission,
   // but for now, we'll hard code it
-  return "Our posture detection model detected you sitting with a hunched back, with hands folded and non-kneeling. This is pretty good posture, but we have some recommendations for improvement!";
+  return "Our posture detection model detected you sitting with a hunched back, with hands folded and right leg kneeling. This is pretty good posture, but we have some recommendations for improvement!";
+});
+
+const workoutResult = computed(() => {
+  return [
+    "To fix the hunched back, openPosture recommends 3x1min child's pose with 90 seconds rest, 3 times a day.",
+    "For the kneeling, we recommend 3x20 each leg hamstring curls twice a day (use ankle weights if available)"
+  ];
 });
 
 const handleFileUpload = (event: Event) => {
@@ -48,7 +62,11 @@ const handleFileUpload = (event: Event) => {
 const submitImage = () => {
   // Logic for submitting the image goes here
   console.log('Submit button clicked');
-  showResults.value = true;
+  showLoading.value = true;
+  setTimeout(() => {
+    showLoading.value = false;
+    showResults.value = true;
+  }, 5000); // Show loading spinner for 5 seconds
 };
 
 const clearImage = () => {
@@ -59,7 +77,6 @@ const clearImage = () => {
 };
 
 </script>
-
 
 <style scoped>
 .container {
@@ -119,9 +136,23 @@ input[type="file"] {
   text-align: center;
 }
 
+.loading-spinner {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin: 20px auto;
+}
 
 .uploaded-image {
-  max-width: 100%;
+  width: 100%; /* Set image width to 100% of the container */
   height: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
