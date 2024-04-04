@@ -57,7 +57,7 @@ import SupportIcon from './icons/IconSupport.vue'
 .welcome-section {
   text-align: center;
   margin-bottom: 40px;
-  padding-left: 40px; /* Add left padding to the welcome section */
+  padding-left: 40px;
 }
 
 .container {

@@ -136,8 +136,8 @@ input[type="file"] {
 }
 
 .loading-spinner {
-  border: 5px solid #f3f3f3; /* Light grey */
-  border-top: 5px solid #3498db; /* Blue */
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -146,7 +146,7 @@ input[type="file"] {
 }
 
 .uploaded-image {
-  width: 100%; /* Set image width to 100% of the container */
+  width: 100%;
   height: auto;
 }
 

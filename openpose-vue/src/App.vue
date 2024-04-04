@@ -52,15 +52,15 @@ header {
 }
 
 .wrapper {
-  color: orange; /* Set text color to orange */
+  color: orange;
 }
 
 .nav-link {
-  color: orange; /* Set nav link text color to orange */
+  color: orange;
 }
 
 .title {
-  color: orange; /* Set title text color to orange */
+  color: orange;
 }
 
 nav {
@@ -71,17 +71,17 @@ nav {
 }
 
 .btn-signout {
-  background-color: #db4437; /* Set button background color */
-  color: #fff; /* Set button text color */
-  padding: 8px 12px; /* Adjust padding */
-  font-size: 14px; /* Adjust font size */
+  background-color: #db4437;
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 14px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .btn-signout:hover {
-  background-color: #c4322e; /* Darken button color on hover */
+  background-color: #c4322e;
 }
 
 nav a {

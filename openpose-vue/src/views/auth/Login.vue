@@ -25,7 +25,7 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: var(--color-background); /* Set background color same as the rest of the page */
+  background-color: var(--color-background);
 }
 
 h1 {

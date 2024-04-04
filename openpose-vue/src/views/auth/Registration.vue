@@ -29,7 +29,7 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: var(--color-background); /* Set background color same as the rest of the page */
+  background-color: var(--color-background);
 }
 
 h1 {
@@ -78,9 +78,8 @@ button {
 }
 
 .sign-in-here a {
-  color: orange; /* Set the color of the text within the router-link to orange */
-  text-decoration: underline; /* Add underline to the text within the router-link */
-}
+  color: orange;
+  text-decoration: underline;
 
 </style>
 
