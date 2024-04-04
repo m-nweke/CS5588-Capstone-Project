@@ -75,7 +75,7 @@ button {
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'vue-router';
 import { auth } from '@/main';
 
@@ -112,6 +112,10 @@ const login = () => {
 };
 
 const signInWithGoogle = () => {
-  // Implement sign in with Google
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider).then((result) => {
+    console.log(result.user);
+    router.push('/dashboard')
+  })
 };
 </script>
