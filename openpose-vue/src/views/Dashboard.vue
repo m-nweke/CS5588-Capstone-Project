@@ -34,13 +34,14 @@ const showLoading = ref(false); // This will be set to true when loading
 const postureDetectionResult = computed(() => {
   // This would be fetched from the backend after submission,
   // but for now, we'll hard code it
-  return "Our posture detection model detected you sitting with a hunched back, with hands folded and right leg kneeling. This is pretty good posture, but we have some recommendations for improvement!";
+  return "Our posture detection model detected you sitting with a reclined back, with hands not folded, non-kneeling, and a forward neck. This is pretty good posture, but we have some recommendations for improvement!";
 });
 
 const workoutResult = computed(() => {
   return [
-    "To fix the hunched back, openPosture recommends 3x1min child's pose with 90 seconds rest, 3 times a day.",
-    "For the kneeling, we recommend 3x20 each leg hamstring curls twice a day (use ankle weights if available)"
+    "To fix the reclined back, openPosture recommends 90 seconds planks, 3 times a day.",
+    "For the kneeling, we recommend 3x20 each leg hamstring curls twice a day (use ankle weights if available).",
+    "For the forward neck, we recommend 3x20 shoulder shrugs, 3 times a day."
   ];
 });
 

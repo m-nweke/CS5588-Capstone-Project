@@ -1,7 +1,7 @@
 # OpenPosture - Sitting Posture Feedback System
 
-### [Project Proposal Slide deck](PostureCapstone.pptx)
-### [Statement of Work](SoW_Posture.docx)
+### [Project Proposal Slide deck](Presentations/PostureCapstone.pptx)
+### [Statement of Work](Misc/SoW_Posture.docx)
 
 ## Overview
 This MIT-licensed software, hosted on GitHub, is a posture assessment tool that determines the sitting position of a person when given a lateral view as input. The output includes details such as the position of the back (straight, hunchback, reclined), position of the hands (folded vs not folded), and kneeling (i.e., feet curled behind the knees). The project employs a trained Keras model based on OpenPose to detect keypoints on the human body, providing valuable insights into sitting posture.

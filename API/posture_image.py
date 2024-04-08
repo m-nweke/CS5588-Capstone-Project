@@ -4,7 +4,7 @@ import time
 import numpy as np
 import util
 from config_reader import config_reader
-from scipy.ndimage.filters import gaussian_filter
+from scipy.ndimage import gaussian_filter
 from model import get_testing_model
 
 tic = 0
@@ -243,7 +243,7 @@ if __name__ == '__main__':  # main function of the program
     if (vi == False):
         time.sleep(2)
         params, model_params = config_reader()
-        canvas, position = process('./sample_images/OP73.jpeg', params, model_params)
+        canvas, position = process('./sample_images/OP123.jpeg', params, model_params)
         if position == 1:
             print("Hunchback")
         elif position == -1:
