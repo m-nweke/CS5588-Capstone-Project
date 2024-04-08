@@ -1,10 +1,8 @@
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="orange">{{ msg }}</h1>
     <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
+      A virtual posture assessment tool created by graduate student developers from the University of Missouri-Kansas City
     </h3>
     <p>{{ testData }}</p>
   </div>
@@ -32,6 +30,10 @@ h3 {
     text-align: left;
   }
 }
+
+.orange {
+  color: orange;
+}
 </style>
 
 <script setup lang="ts">
@@ -45,7 +47,6 @@ import { ref, onBeforeMount } from 'vue';
 
 const testData = ref('');
 const photoUrl = ref('');
-const photoFilename = 'photo1.jpg'; // Change this to the dynamic filename
 
 const getData = () => {
   return axios.get('http://127.0.0.1:5000/'); // Return the axios promise

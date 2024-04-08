@@ -8,51 +8,73 @@ import SupportIcon from './icons/IconSupport.vue'
 </script>
 
 <template>
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>Integration</template>
+  <div class="container">
+    <div class="welcome-section">
+      <h1>Welcome to OpenPosture</h1>
+      <p class="description">OpenPosture is a revolutionary app designed to transform your posture habits, offering a comprehensive suite of features tailored to meet your needs. With OpenPosture, you’ll experience personalized guidance and real-time feedback to correct poor seated posture, enhance spinal alignment, and alleviate discomfort.</p>
+    </div>
+    <div class="steps">
+      <WelcomeItem>
+        <template #icon>
+          <DocumentationIcon />
+        </template>
+        <template #heading>Dataset Preparation</template>
 
-    Our first steps includes following
-    <a href="https://testdriven.io/blog/developing-a-single-page-app-with-flask-and-vuejs/" target="_blank" rel="noopener">this example</a>
-    to get our backend and frontend connected.
-  </WelcomeItem>
+        A curated dataset of diverse seated posture images underpins model training, focusing on critical body parts like the back, hands, neck, and feet for accurate posture recognition.
+      </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <ToolingIcon />
-    </template>
-    <template #heading>Create Dataset</template>
+      <WelcomeItem>
+        <template #icon>
+          <ToolingIcon />
+        </template>
+        <template #heading>Posture Analysis</template>
 
-    Next we will create our own dataset by taking pictures with a number of different postures.
-    <br />
-  </WelcomeItem>
+        The system precisely identifies key posture points and assesses posture alignment, pinpointing specific areas needing improvement.
+      </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <EcosystemIcon />
-    </template>
-    <template #heading>Import data to firebase</template>
+      <WelcomeItem>
+        <template #icon>
+          <EcosystemIcon />
+        </template>
+        <template #heading>Personalized Feedback</template>
 
-    The next step involves using firebase docs to get the dataset into the firestore
-  </WelcomeItem>
+        Based on posture analysis, personalized correction recommendations are generated and delivered through this Vue.js UI, powered by Flask and Firebase, offering users an intuitive and seamless experience in improving their posture.
+      </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>Serve data to frontend</template>
+      <WelcomeItem>
+        <template #icon>
+          <CommunityIcon />
+        </template>
+        <template #heading>Feedback Mechanism</template>
 
-    From there we need to create some HTTPS routes that can serve the data to the frontend as well as submit data from the frontend to the database.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <template #heading>Start model development</template>
-
-    Once this is done, we can work on feeding the data to the model
-  </WelcomeItem>
+        An immediate feedback mechanism provides visual cues directly to the user, suggesting posture adjustments, prompts breaks, or offering specific exercises designed to mitigate any detected posture issues, fostering an interactive and beneficial user experience.
+      </WelcomeItem>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.welcome-section {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-left: 40px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.description {
+  margin-bottom: 40px;
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+</style>
