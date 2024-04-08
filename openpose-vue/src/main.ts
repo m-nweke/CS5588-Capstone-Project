@@ -5,7 +5,7 @@ import './assets/main.css'
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from "firebase/firestore";
 import 'firebase/auth';
-import { getAuth } from "firebase/auth"; // Import firebase/auth for authentication
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAiBggE1bmfuZUGmSWoxwrtJ8lKBExdCFU",
@@ -21,7 +21,7 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp)
-//
+
 // const analytics = getAnalytics(firebaseApp);
 
 
