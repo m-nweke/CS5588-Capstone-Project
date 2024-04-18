@@ -238,11 +238,11 @@ def evaluate_neck_posture(all_peaks):
             neck_posture = "Undefined"
             # The threshold values and evaluation logic can be fine-tuned as needed
             if abs(neck[1] - shoulder_center[1]) < 10:  # If neck y is close to shoulder center y
-               neck_posture = "Straight"
+               neck_posture = "Neck is Straight"
             elif neck[1] < shoulder_center[1]:
-               neck_posture = "Forward"
+               neck_posture = "Neck is Forward"
             elif neck[1] > shoulder_center[1]:
-                neck_posture = "Backward"
+                neck_posture = "Neck is Backward"
             return neck_posture
         else:
             return "Neck keypoints not detected."
