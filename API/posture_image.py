@@ -4,7 +4,7 @@ import time
 import numpy as np
 import util
 from config_reader import config_reader
-from scipy.ndimage.filters import gaussian_filter
+from scipy.ndimage import gaussian_filter
 from model import get_testing_model
 
 tic = 0
