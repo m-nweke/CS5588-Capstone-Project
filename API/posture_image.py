@@ -4,7 +4,7 @@ import time
 import numpy as np
 import util
 from config_reader import config_reader
-from scipy.ndimage import gaussian_filter
+from scipy.ndimage.filters import gaussian_filter
 from model import get_testing_model
 
 tic = 0
@@ -81,6 +81,10 @@ def process(input_image, params, model_params):
     position = checkPosition(all_peaks)  # check position of spine.
     checkKneeling(all_peaks)  # check whether kneeling oernot
     checkHandFold(all_peaks)  # check whether hands are folding or not.
+    neck_posture = evaluate_neck_posture(all_peaks)  # check neck position
+    print(neck_posture)
+    feet_position = evaluate_feet_position(all_peaks)
+    print(feet_position)
     canvas1 = draw(input_image, all_peaks)  # show the image.
     return canvas1, position
 
@@ -211,6 +215,81 @@ def checkKneeling(all_peaks):
         except Exception as e:
             print("legs not detected")
 
+def evaluate_neck_posture(all_peaks):
+    # Indices for the neck and shoulders based on model's keypoint layout
+    neck_index = 1
+    r_shoulder_index = 2
+    l_shoulder_index = 5
+
+    try:
+        # Get key points for neck and shoulders
+        neck = all_peaks[neck_index][0][:2] if len(all_peaks[neck_index]) > 0 else None
+        r_shoulder = all_peaks[r_shoulder_index][0][:2] if len(all_peaks[r_shoulder_index]) > 0 else None
+        l_shoulder = all_peaks[l_shoulder_index][0][:2] if len(all_peaks[l_shoulder_index]) > 0 else None
+
+        # Calculate the midpoint of the shoulders to estimate the shoulder center
+        if r_shoulder and l_shoulder:
+            shoulder_center = [(r_shoulder[0] + l_shoulder[0]) / 2, (r_shoulder[1] + l_shoulder[1]) / 2]
+        else:
+            return "Shoulder keypoints not detected."
+
+        if neck and shoulder_center:
+            # Evaluate the posture of the neck
+            neck_posture = "Undefined"
+            # The threshold values and evaluation logic can be fine-tuned as needed
+            if abs(neck[1] - shoulder_center[1]) < 10:  # If neck y is close to shoulder center y
+               neck_posture = "Straight"
+            elif neck[1] < shoulder_center[1]:
+               neck_posture = "Forward"
+            elif neck[1] > shoulder_center[1]:
+                neck_posture = "Backward"
+            return neck_posture
+        else:
+            return "Neck keypoints not detected."
+    except Exception as e:
+        return str(e)
+
+def evaluate_feet_position(all_peaks):
+    """
+    Evaluate if feet are on the ground based on relative positions to other body parts.
+    :param all_peaks: Detected keypoints.
+    :return: Evaluation of feet position as string.
+    """
+    # Indices for keypoints
+    r_ankle_index = 10
+    l_ankle_index = 13
+    r_knee_index = 9
+    l_knee_index = 12
+
+    # Extract keypoints for ankles and knees
+    r_ankle = all_peaks[r_ankle_index][0][:2] if len(all_peaks[r_ankle_index]) > 0 else None
+    l_ankle = all_peaks[l_ankle_index][0][:2] if len(all_peaks[l_ankle_index]) > 0 else None
+    r_knee = all_peaks[r_knee_index][0][:2] if len(all_peaks[r_knee_index]) > 0 else None
+    l_knee = all_peaks[l_knee_index][0][:2] if len(all_peaks[l_knee_index]) > 0 else None
+
+    # Determine the evaluation of feet position based on knee and ankle relative positions
+    feet_on_floor = "Unknown"
+    if r_ankle and l_ankle and r_knee and l_knee:
+        # Assume feet are on the floor if the ankles are below the knees
+        if r_ankle[1] > r_knee[1] and l_ankle[1] > l_knee[1]:
+            feet_on_floor = "Both feet are on the floor."
+        else:
+            feet_on_floor = "One or both feet are not on the floor."
+    elif r_ankle or l_ankle:
+        # If only one ankle is detected, check if it is below its corresponding knee
+        feet_partially_on_floor = []
+        if r_ankle and r_knee and r_ankle[1] > r_knee[1]:
+            feet_partially_on_floor.append("right foot")
+        if l_ankle and l_knee and l_ankle[1] > l_knee[1]:
+            feet_partially_on_floor.append("left foot")
+        if feet_partially_on_floor:
+            feet_on_floor = f"At least {' and '.join(feet_partially_on_floor)} is on the floor."
+        else:
+            feet_on_floor = "Feet are not on the floor."
+    else:
+        feet_on_floor = "Feet keypoints not detected."
+
+    return feet_on_floor
 
 def showimage(
         img):  # sometimes opencv will oversize the image when using using `cv2.imshow()`. This function solves that issue.
@@ -225,6 +304,8 @@ def showimage(
     cv2.imshow('image', img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+
 
 
 def prinfTick(i):  # Time calculation to keep a trackm of progress
@@ -243,7 +324,7 @@ if __name__ == '__main__':  # main function of the program
     if (vi == False):
         time.sleep(2)
         params, model_params = config_reader()
-        canvas, position = process('./sample_images/OP123.jpeg', params, model_params)
+        canvas, position = process('./sample_images/OP55.jpeg', params, model_params)
         if position == 1:
             print("Hunchback")
         elif position == -1:
