@@ -326,11 +326,11 @@ if __name__ == '__main__':  # main function of the program
         params, model_params = config_reader()
         canvas, position = process('./sample_images/OP55.jpeg', params, model_params)
         if position == 1:
-            print("Hunchback")
+            print("Hunchback position")
         elif position == -1:
-            print("Reclined")
+            print("Reclined back position")
         else:
-            print("Straight")
+            print("Straight back position")
 
         showimage(canvas)
 
